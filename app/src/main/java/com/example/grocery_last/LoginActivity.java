@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.grocery_last.Connection.ConnectionServer;
+import com.example.grocery_last.Connection.JsonHelper;
+import com.example.grocery_last.helper.Constants;
 import com.example.grocery_last.usersession.UserSession;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -86,17 +89,62 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (validateUsername(email) && validatePassword(pass)) { //Username and Password Validation
 
-                    //Progress Bar while connection establishes
+                  loginuser(email,pass);  //Progress Bar while connection establishes
 
                     Toast.makeText(LoginActivity.this, "dddddddddd", Toast.LENGTH_SHORT).show();
                 }
 
+
+
             }
+
+
         });
+
+
 
 
     }
 
+    private void loginuser(String email, String pass) {
+        ConnectionServer connectionServer = new ConnectionServer();
+        connectionServer.set_url(Constants.LOGINCHECK);
+        connectionServer.requestedMethod("POST");
+        connectionServer.buildParameter("Email",email);
+        connectionServer.buildParameter("Password",pass);
+        connectionServer.execute(new ConnectionServer.AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+
+                JsonHelper jsonHelper = new JsonHelper(output);
+                Log.e("success", "sanjeev");
+                if (jsonHelper.isValidJson()) {
+                    //for all data access
+                    Log.e("output",output );
+                    //Log.e("success", "sanjeev");
+                   // jsonHelper.setChildjsonObj(jsonHelper.getCurrentJsonObj(), "data");
+                    //Log.e("all",jsonHelper.toString());
+                    //Log.e("username",jsonHelper.GetResult("username") );
+                    //Log.e("name",jsonHelper.GetResult("name") );
+                    //Log.e("password",jsonHelper.GetResult("password") );
+                    //String status = jsonHelper.GetResult("status");
+
+                   // Log.e("success", status);
+
+
+                   /* if (status.equals("true")) {
+                        Toast toast=Toast.makeText(getApplicationContext(),"Add Successfully",Toast.LENGTH_SHORT);
+                        //toast.setMargin(50,50);
+                        toast.show();
+
+                    }*/
+                }
+
+
+            }
+
+        } );
+    }
 
 
     private boolean validatePassword(String pass) {

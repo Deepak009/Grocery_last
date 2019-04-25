@@ -35,7 +35,7 @@
 
 
     <style name="fonts">
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">15sp</item>
     </style>
 
