@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText edtemail,edtpass;
     private String email,pass,sessionmobile;
-    private TextView appname,forgotpass,registernow;
+    private TextView appname,forgotpass,registernow,skip;
     private UserSession session;
     public static final String TAG = "MyTag";
     private int cartcount, wishlistcount;
@@ -47,6 +47,18 @@ public class LoginActivity extends AppCompatActivity {
 
         edtemail= findViewById(R.id.email);
         edtpass= findViewById(R.id.password);
+        skip = findViewById(R.id.tv_skip);
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent MainActivity = new Intent(LoginActivity.this, com.example.grocery_last.MainActivity.class);
+                startActivity(MainActivity);
+                finish();
+            }
+        });
+
+
 
         Bundle registerinfo=getIntent().getExtras();
         if (registerinfo!=null) {
@@ -106,45 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginuser(String email, String pass) {
-        ConnectionServer connectionServer = new ConnectionServer();
-        connectionServer.set_url(Constants.LOGINCHECK);
-        connectionServer.requestedMethod("POST");
-        connectionServer.buildParameter("Email",email);
-        connectionServer.buildParameter("Password",pass);
-        connectionServer.execute(new ConnectionServer.AsyncResponse() {
-            @Override
-            public void processFinish(String output) {
 
-                JsonHelper jsonHelper = new JsonHelper(output);
-                Log.e("success", "sanjeev");
-                if (jsonHelper.isValidJson()) {
-                    //for all data access
-                    Log.e("output",output );
-                    //Log.e("success", "sanjeev");
-                   // jsonHelper.setChildjsonObj(jsonHelper.getCurrentJsonObj(), "data");
-                    //Log.e("all",jsonHelper.toString());
-                    //Log.e("username",jsonHelper.GetResult("username") );
-                    //Log.e("name",jsonHelper.GetResult("name") );
-                    //Log.e("password",jsonHelper.GetResult("password") );
-                    //String status = jsonHelper.GetResult("status");
-
-                   // Log.e("success", status);
-
-
-                   /* if (status.equals("true")) {
-                        Toast toast=Toast.makeText(getApplicationContext(),"Add Successfully",Toast.LENGTH_SHORT);
-                        //toast.setMargin(50,50);
-                        toast.show();
-
-                    }*/
-                }
-
-
-            }
-
-        } );
-    }
 
 
     private boolean validatePassword(String pass) {
@@ -191,5 +165,25 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+
+
+    private void loginuser(String email, String pass) {
+        ConnectionServer connectionServer = new ConnectionServer();
+        connectionServer.set_url(Constants.LOGINCHECK);
+        connectionServer.requestedMethod("POST");
+        connectionServer.buildParameter("Email",email);
+        connectionServer.buildParameter("Password",pass);
+        connectionServer.execute(new ConnectionServer.AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+
+                Log.e("success", output);
+
+
+            }
+
+        } );
     }
 }

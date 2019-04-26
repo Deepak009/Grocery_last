@@ -15,9 +15,12 @@ public class Constants {
     //http://192.168.1.222/grocery_website/admin/android_process/check_user.php
 
 
-    public static String URL = "http://192.168.1.222/";
-    //public static String URL = "http://192.168.29.183/";
-    public static String SUBFOLDER = "grocery_website/admin/android_process/";
+    //public static String URL = "http://192.168.1.222/";
+    public static String URL = "http://192.168.1.3/";
+
+
+    //public static String SUBFOLDER = "grocery_website/admin/android_process/";
+    public static String SUBFOLDER = "grocery_market/";
     //public static String USERNAME = URL+SUBFOLDER+"username";
     public static String LOGINCHECK = URL+SUBFOLDER+"check_user.php";
     //public static String LOGINCHECK = URL+SUBFOLDER+"logincheck.php";

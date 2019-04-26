@@ -117,6 +117,24 @@
                     style="@style/fonts"
                     android:text="@string/register_now"/>
 
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_skip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SKIP"
+                    style="@style/fonts"
+                    android:textAlignment="center"
+                    android:layout_marginTop="20dp"/>
+
+
             </LinearLayout>
 
         </LinearLayout>
